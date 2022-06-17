@@ -1,4 +1,4 @@
-
+# importing libraries
 import requests
 import json
 import pandas as pd
@@ -9,7 +9,7 @@ item_code = ['100','200','300', '400', '500', '600']
 p_country_code = '1101'
 
 
-
+# set crawling range
 now = datetime.now()
 year = []
 for i in range(0, 1994):
@@ -18,7 +18,7 @@ for i in range(0, 1994):
   year.append(d)
 print(year)
 
-
+# function name must be changed
 def rice(url, p_product_cls_code, p_item_category_code, p_country_code, start_date):
   params ={
     'p_cert_key' : '111' , 
@@ -39,9 +39,11 @@ def rice(url, p_product_cls_code, p_item_category_code, p_country_code, start_da
   rices = j_content['data']['item']
   return rices
 
+
 r_year = []
-for item in item_code:
-  for y in year:
+
+for item in item_code: # looping item code
+  for y in year: # day
     rices = rice(url, p_product_cls_code, item, p_country_code,y)
     if(rices == []) : continue
     for i in range(len(rices)): 
